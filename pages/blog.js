@@ -4,19 +4,24 @@ import {startClock, serverRenderClock} from '../store'
 import Examples from '../components/examples'
 
 class Index extends React.Component {
-    static getInitialProps({reduxStore, req,params}) {
+    static getInitialProps({reduxStore, req, params}) {
         const isServer = !!req
         reduxStore.dispatch(serverRenderClock(isServer))
 
+        if (isServer && req.param) {
 
-        const articleId=req.param('articleId');
+            const articleId = req.param('articleId');
 
-        return {articleId}
+            return {articleId}
+        }
+        return {};
+
     }
 
     componentDidMount() {
         const {dispatch} = this.props
         this.timer = startClock(dispatch)
+
     }
 
     componentWillUnmount() {
@@ -27,7 +32,7 @@ class Index extends React.Component {
     render() {
         return (
             <div>
-                blog {this.props.articleId||"not specified"}
+                blog {this.props.articleId || "not specified"} wah
                 <Examples/>
             </div>
         )

@@ -1,6 +1,6 @@
 // next.config.js
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const {IgnorePlugin, EnvironmentPlugin} = require('webpack');
+const {IgnorePlugin, EnvironmentPlugin,LoaderOptionsPlugin} = require('webpack');
 const path = require('path');
 const glob = require('glob');
 const isProd = process.env.NODE_ENV === 'production';
@@ -37,6 +37,9 @@ module.exports = {
             );
         }
 
+      /*  config.plugins.push(new LoaderOptionsPlugin({
+            debug: true
+        }));*/
 
         if (config.resolve.alias) {
             delete config.resolve.alias['react'];
@@ -96,6 +99,9 @@ module.exports = {
                 'less-loader'
             ]
         });
+
+
+        config.devtool= "source-map";
 
 
         return config;

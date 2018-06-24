@@ -25,4 +25,4 @@ apps:
       #DEBUG: "*"
       LOG_QUERIES: true
       FIXTURES: true
-    args: "--color"
+    args: "--color --inspect"

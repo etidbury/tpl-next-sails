@@ -8,7 +8,7 @@
     "server-watch": "pm2 delete cra-sails-watch; pm2 start ./ecosystem.config.yml --only cra-sails-watch",
     "start": "npm run server-watch & (tidil check-server && tidil open && pm2 logs)",
     "build": "next build",
-    "dev":"next"
+    "dev":"next --inspect"
   },
   "author": "Edd Tidbury",
   "license": "ISC",
