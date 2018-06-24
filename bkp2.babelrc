@@ -1,0 +1,29 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-root-import",
+      {
+      //  "rootPathSuffix": "modules"
+      }
+       , { "rootPathPrefix": "../" },
+      "transform-flow-strip-types"
+    ],
+    [
+      "module-resolver", {
+      "root": ["."],
+      "alias": {
+        "styles": "./app/styles"
+      },
+      "cwd": "babelrc"
+    }],
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$", "scss$","less$"]
+      }
+    ]
+  ]
+}

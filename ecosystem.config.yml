@@ -1,0 +1,28 @@
+#tip: use below command to find all package files
+#   find ./app/src -name 'package.*' -maxdepth 4
+
+apps:
+ # - script   : ./api.js
+ #   name     : 'api-app'
+ #   instances: 4
+ #   exec_mode: cluster
+  - script : ./server/app.js
+    name   : 'cra-sails'
+    #watch  : true
+      #NODE_ENV: production
+    env:
+      #DEBUG: "*"
+      LOG_QUERIES: true
+      #FIXTURES: true
+    args: "--color"
+
+  - script : ./server/app.js
+    name   : 'cra-sails-watch'
+    watch  :
+      - "./server/config"
+      - "./server/api"
+    env:
+      #DEBUG: "*"
+      LOG_QUERIES: true
+      FIXTURES: true
+    args: "--color"

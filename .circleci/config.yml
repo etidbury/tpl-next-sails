@@ -1,0 +1,166 @@
+version: 2
+jobs:
+  build:
+
+    working_directory: /app
+    environment:
+        SSH_USER: etidbury
+        HOST_BASE_DIR: /var/lemp-container.git/app/src/project/
+        STAGING_HOST_URL: 457elmp51.blackmesh.com
+        PRODUCTION_HOST_URL: 457elwb19.blackmesh.com
+        PRODUCTION_HOST_2_URL: 457elwb20.blackmesh.com
+    branches:
+      only:
+        - staging
+        - production
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "7d:1a:1b:88:92:40:11:11:cc:54:8c:9f:e4:f3:b9:28"
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache py-pip=9.0.0-r1
+            pip install awscli==1.11.129
+      - run: ssh-keyscan ${STAGING_HOST_URL} >> ~/.ssh/known_hosts
+
+      - run:
+          name: Build the application Docker image
+          command: |
+            docker build -t app . && echo 'done'
+      # If we had
+      #- run:
+      #    name: Run mongo db
+      #    command: |
+      #      docker run --name mongo_test -d mongo
+      #- run:
+      #    name: Run tests
+      #    command: |
+      #      docker run -a STDOUT -it -p 4100:3000 --link mongo_test:db --name test_app app gulp test
+      #      #docker exec -t test_app gulp test
+      - deploy:
+          name: Push application Docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "production" ]; then
+
+
+               CLUSTER='wmg-flux-cluster'
+               FAMILY='wmg-flux-task-main'
+               DOCKER_IMAGE='wmg-flux'
+               TASK='wmg-flux-task-main'
+               SERVICE='wmg-flux-service-lb'
+               AWS_REGION='eu-west-2'
+               AWS_DEFAULT_PROFILE=default
+               AWS_ACCOUNT_ID='035689499320'
+
+
+
+               # Login to AWS
+               $(aws ecr get-login --no-include-email --region $AWS_REGION | sed 's|https://||')
+
+               aws configure set region $AWS_REGION
+
+               # Tag and push docker image
+               docker tag app $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
+               docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$DOCKER_IMAGE:$CIRCLE_SHA1
+
+               # Create task for docker deploy
+               task_template='[
+               {
+                 "name": "%s",
+                 "image": "%s.dkr.ecr.%s.amazonaws.com/%s:%s",
+                 "essential": true,
+                 "memoryReservation": 500,
+                 "portMappings": [
+                   {
+                     "containerPort": 8088,
+                     "hostPort": 80
+                   }
+                 ],
+                 "environment" : [
+                     { "name" : "NODE_ENV", "value" : "production" }
+                 ]
+               }
+               ]'
+               echo "$task_template"
+
+               task_def=$(printf "$task_template" $TASK $AWS_ACCOUNT_ID $AWS_REGION $DOCKER_IMAGE $CIRCLE_SHA1)
+
+               # Register task definition
+               json=$(aws ecs register-task-definition --container-definitions "$task_def" --family "$FAMILY")
+
+               # Grab revision # using regular bash and grep
+               revision=$(echo "$json" | grep -o '"revision": [0-9]*' | grep -Eo '[0-9]+')
+
+               # Deploy revision
+               aws ecs update-service --cluster "$CLUSTER" --service "$SERVICE" --task-definition "$TASK":"$revision"
+
+
+               return 0
+            fi
+
+
+
+            CONTAINER_DIR="/var/lemp-container.git/"
+            CONTAINER_NAME="wmgflux"
+            GITHUB_REPO_URL="https://$GITHUB_TOKEN@github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git"
+
+
+            if [ "${CIRCLE_BRANCH}" == "staging" ]; then
+
+                    ACTIVE_HOST_URL=${STAGING_HOST_URL}
+
+
+                  ####################
+                   ssh ${SSH_USER}@${ACTIVE_HOST_URL} bash -c "'
+
+                    id
+                    groups
+
+                    if [ ! -d "${HOST_BASE_DIR}${CIRCLE_PROJECT_REPONAME}.git" ]; then
+
+                        mkdir -p "${HOST_BASE_DIR}${CIRCLE_PROJECT_REPONAME}.git"
+
+                        cd "${HOST_BASE_DIR}"
+
+
+                        pwd
+
+                        #git init --bare || echo "Already initiated repository. Continuing..."
+
+
+                        echo "${GITHUB_REPO_URL}"
+
+                        git clone "${GITHUB_REPO_URL}" --branch "${CIRCLE_BRANCH}" --single-branch "${CIRCLE_PROJECT_REPONAME}.git"
+                    fi
+
+                    cd "${HOST_BASE_DIR}${CIRCLE_PROJECT_REPONAME}.git"
+
+                    pwd
+
+                   git remote -v
+                   git remote rm origin
+                   git remote add origin ${GITHUB_REPO_URL}
+                   git remote -v
+
+                   git reset --hard HEAD
+                   git fetch origin
+                   git checkout -B ${CIRCLE_BRANCH}
+                   git merge origin/${CIRCLE_BRANCH}
+
+
+                    echo "Project retrieved from Github"
+
+
+                    cd ${CONTAINER_DIR}
+
+                    docker-compose up -d --no-deps --build ${CONTAINER_NAME} && echo "Successfully restarted docker container ${CONTAINER_NAME}"
+
+                  '"
+                  ####################
+
+            fi

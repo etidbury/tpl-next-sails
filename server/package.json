@@ -1,0 +1,53 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "0.0.1",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "@sailshq/connect-redis": "^3.2.1",
+    "@sailshq/socket.io-redis": "^5.2.0",
+    "async": "2.0.1",
+    "axios": "^0.17.1",
+    "base-64": "^0.1.0",
+    "chai": "^4.1.2",
+    "csv": "^3.1.0",
+    "dotenv": "^6.0.0",
+    "eslint-plugin-promise": "^3.7.0",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.10",
+    "md5": "^2.2.1",
+    "mocha": "4.1.0",
+    "path": "^0.12.7",
+    "sails": "^1.0.2",
+    "sails-hook-cron": "^2.2.2",
+    "sails-hook-dotenv": "^0.1.1",
+    "sails-hook-orm": "^2.0.0-16",
+    "sails-hook-sockets": "^1.4.0",
+    "sails-hook-validation": "^0.4.6",
+    "sails-mysql": "^1.0.0",
+    "sails-hook-next": "^2.0.0"
+  },
+  "devDependencies": {
+    "@sailshq/eslint": "^4.19.3"
+  },
+  "scripts": {
+    "postinstall": "yarn generate-lock-entry || exit 0",
+    "start": "NODE_ENV=production node app.js",
+    "test": "NODE_ENV=testing node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/**/*.test.js",
+    "test-watch": "NODE_ENV=testing node ./node_modules/mocha/bin/mocha --watch test/bootstrap.test.js test/**/*.test.js",
+    "lint": "eslint . --quiet --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/etidbury/cra-sails-boilerplate.git"
+  },
+  "author": "edwardtidbury",
+  "license": "",
+  "engines": {
+    "node": ">=10.0"
+  }
+}

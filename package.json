@@ -1,0 +1,28 @@
+{
+  "name": "tpl-next-sails",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server-watch": "pm2 delete cra-sails-watch; pm2 start ./ecosystem.config.yml --only cra-sails-watch",
+    "start": "npm run server-watch & (tidil check-server && tidil open && pm2 logs)",
+    "build": "next build",
+    "dev":"next"
+  },
+  "author": "Edd Tidbury",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^7.1.2",
+    "next": "^6.0.3",
+    "next-routes": "^1.4.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.1",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.1.0",
+    "webpack": "^4.12.1",
+    "webpack-bundle-analyzer": "^2.13.1"
+  }
+}

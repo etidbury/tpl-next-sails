@@ -1,0 +1,27 @@
+declare type User = {
+    emailAddress:string,
+    password:string
+}
+
+declare type SpotifyTrack = {
+    spotifyTrackId:string,
+    primaryArtistId:string,
+    title:string,
+    name:string,
+    spotifyIRSC:string,
+    spotifyArtistIdList:string,
+    spotifyArtistNameList:string
+}
+
+declare type SeedCampaign = {
+    title:string,
+    spotifyArtistId:string,
+    spotifySingleTracksToSeed:Array<SpotifyTrack>,
+    spotifyNonSingleTracksToSeed:Array<SpotifyTrack>,
+    scheduledExecution:string,
+    managedBy:User,
+    notes?:string,
+    processed:boolean,
+    executed:boolean,
+    active:boolean
+}
