@@ -18,6 +18,14 @@ module.exports = function defineCustomHook(sails) {
 
             sails.log.info('Initializing hook... (`api/hooks/custom`)');
 
+
+            //create shorthand
+            /**@global*/
+
+            sails.next={};
+            
+            sails.next.render=(...args)=>sails.config.next.app.render(...args);
+
             // ... Any other app-specific setup code that needs to run on lift,
             // even in production, goes here ...
 

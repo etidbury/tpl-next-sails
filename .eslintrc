@@ -12,6 +12,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-process-env": "error",
     /* JSX */
     "no-restricted-globals": "off",
     "react/prop-types": [
@@ -55,6 +56,7 @@
 
 
     /**Edds specific recommendations**/
+
     "promise/always-return": "warn",  /*Return inside each then() to create readable and reusable Promise chains.*/
     "promise/no-return-wrap": "error",//Avoid wrapping values in Promise.resolve or Promise.reject when not needed.
     "promise/param-names": "error",//Enforce consistent param names when creating new promises.

@@ -1,6 +1,6 @@
 // next.config.js
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
-const {IgnorePlugin, EnvironmentPlugin,LoaderOptionsPlugin} = require('webpack');
+//const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
+const {EnvironmentPlugin} = require('webpack');
 const path = require('path');
 const glob = require('glob');
 const isProd = process.env.NODE_ENV === 'production';
@@ -12,7 +12,9 @@ module.exports = {
     , webpack: (config, {dev}) => {
         const prod = !dev;
 
+
         process.chdir(__dirname);
+        require('dotenv').config();
         //config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/));
 
         /* if (dev) {
@@ -23,11 +25,12 @@ module.exports = {
                  enforce: 'pre'
              });
          }*/
-        //config.plugins.push(new EnvironmentPlugin([
-         //   'NODE_ENV'
-        //]));
+        config.plugins.push(new EnvironmentPlugin([
+            'NODE_ENV',
+            'DEV_SERVER_PORT'
+        ]));
 
-        if (process.env.ANALYZE_BUILD) {
+        /*if (process.env.ANALYZE_BUILD) {
             config.plugins.push(
                 new BundleAnalyzerPlugin({
                     analyzerMode: 'server',
@@ -35,7 +38,7 @@ module.exports = {
                     openAnalyzer: true
                 })
             );
-        }
+        }*/
 
       /*  config.plugins.push(new LoaderOptionsPlugin({
             debug: true

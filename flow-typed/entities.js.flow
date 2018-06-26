@@ -3,6 +3,9 @@ declare type User = {
     password:string
 }
 
+
+
+
 declare type SpotifyTrack = {
     spotifyTrackId:string,
     primaryArtistId:string,

@@ -16,6 +16,19 @@ apps:
       #FIXTURES: true
     args: "--color"
 
+
+  - script : ./server/app.js
+    name   : 'cra-sails-test'
+    #watch  : true
+      #NODE_ENV: production
+    env:
+      #DEBUG: "*"
+      NODE_ENV: testing
+      LOG_QUERIES: true
+      #FIXTURES: true
+    args: "--color"
+
+
   - script : ./server/app.js
     name   : 'cra-sails-watch'
     watch  :

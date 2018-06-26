@@ -30,9 +30,8 @@ process.chdir(__dirname);
 
 const path=require('path');
 require('dotenv').config({path:path.resolve(process.cwd(),"../",".env")});
-
-
-process.env.PORT=process.env.DEV_SERVER_PORT;
+//stop sails from overriding baked in env variables for ports in config/*
+delete process.env.PORT;
 
 
 // Attempt to import `sails` dependency, as well as `rc` (for loading `.sailsrc` files).

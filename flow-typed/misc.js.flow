@@ -1,0 +1,5 @@
+declare type ServerProps = {
+    clientVersion:string,
+    serverVersion:string,
+    articleId?:string
+}

@@ -43,7 +43,7 @@
     "sails": true,
     "_": true,
     "async": true,
-
+    "next":true,
     "SevenDigital":true,
     // Models:
     "User": true,

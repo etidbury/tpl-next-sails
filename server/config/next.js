@@ -1,8 +1,9 @@
+
 module.exports.next = {
     // Sails integration options
     api: {
         // Prefix for all Sails API routes
-        prefix: require('./blueprints').prefix
+       // prefix: require('./blueprints').prefix
     },
 
     // Next.js instance options. Passed to `next()`.

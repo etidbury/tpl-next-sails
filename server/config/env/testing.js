@@ -93,7 +93,7 @@ module.exports = {
          ***************************************************************************/
         migrate: 'drop',
 
-        /***************************************************************************
+        /*********************************************2******************************
          *                                                                          *
          * If, in production, this app has access to physical-layer CASCADE         *
          * constraints (e.g. PostgreSQL or MySQL), then set those up in the         *
@@ -117,9 +117,9 @@ module.exports = {
      * > all environments (not just in production.)                            *
      *                                                                         *
      ***************************************************************************/
-    blueprints: {
-        shortcuts: false,
-    },
+    // blueprints: {
+    //     shortcuts: true,
+    // },
 
 
     /***************************************************************************

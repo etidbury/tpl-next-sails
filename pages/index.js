@@ -9,8 +9,6 @@ class Index extends React.Component {
     reduxStore.dispatch(serverRenderClock(isServer))
 
 
-
-
     return {}
   }
 
@@ -19,6 +17,7 @@ class Index extends React.Component {
     this.timer = startClock(dispatch)
   }
 
+
   componentWillUnmount () {
     clearInterval(this.timer)
   }
@@ -26,7 +25,11 @@ class Index extends React.Component {
 
   render () {
     return (
-      <Examples />
+        <div>
+            <p className="foo">Hello World!</p>
+            <Examples />
+        </div>
+
     )
   }
 }
