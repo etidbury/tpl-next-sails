@@ -7,6 +7,7 @@
     "server-watch": "pm2 delete cra-sails-watch; pm2 start ./ecosystem.config.yml --only cra-sails-watch",
     "start": "npm run server-watch & (tidil check-server --port-env DEV_SERVER_PORT && tidil open --port-env DEV_SERVER_PORT && pm2 logs)",
     "build": "next build",
+    "deploy:now": "now --docker -e PORT=80",
     "build-prod": "NODE_ENV=production next build",
     "prod": "NODE_ENV=production next build && NODE_ENV=production node server/app.js",
     "dev": "next --inspect",
@@ -15,33 +16,18 @@
     "test-all-ci": "tidil test-all",
     "lint": "node ./node_modules/eslint . --quiet --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "docker": "tidil docker run",
-    "docker:reset":"docker stop $(docker ps -a -q)&&docker rm $(docker ps -a -q)",
-    "docker:rm":"docker rm $(docker stop $(docker ps -a -q --filter ancestor=cra-sails --format=\"{{.ID}}\"))",
-    "docker-r":"yarn docker:reset ;docker build -t cra-sails . --no-cache && docker run -p 127.0.0.1:3016:3005 -t cra-sails:latest",
-    "docker-m": "docker ps -a -q --filter=\"name=cra-sails\" && docker build -t cra-sails . --no-cache && docker run -p 127.0.0.1:3008:3005 -t cra-sails --name cra-sails",
-    
-    "docker:rmi":"docker rmi cra-sails",
-    "docker:stop":"docker rm $(docker stop $(docker ps -a -q --filter ancestor=cra-sails --format=\"{{.ID}}\"))",
-    "docker:run":"docker run -p 127.0.0.1:3020:3005 -t cra-sails",
-    "docker:start":"npm run docker:rmi ; npm run docker:stop ; docker build -t cra-sails . && npm run docker:run",
- 
-
-    "mysql": "docker stop local-mysql-server ; docker rm local-mysql-server ; docker run --name local-mysql-server -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=cra-sails-local -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
-
+    "docker:reset": "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)",
+    "docker:rm": "docker rm $(docker stop $(docker ps -a -q --filter ancestor=cra-sails --format=\"{{.ID}}\"))",
+    "docker:build": "docker build -t cra-sails . --no-cache",
+    "docker:rmi": "docker rmi cra-sails",
+    "docker:stop": "docker rm $(docker stop $(docker ps -a -q --filter ancestor=cra-sails --format=\"{{.ID}}\"))",
+    "docker:run": "docker run -p 127.0.0.1:3021:3005 -t cra-sails",
+    "docker:start": "npm run docker:rmi ; npm run docker:stop ; docker build -t cra-sails . && npm run docker:run",
+    "docker:mysql": "docker stop local-mysql-server ; docker rm local-mysql-server ; docker run --name local-mysql-server -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=cra-sails-local -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
   },
   "author": "Edd Tidbury",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.0.0",
-    "glob": "^7.1.2",
-    "next": "^6.0.3",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.1",
-    "redux": "^3.6.0",
-    "redux-thunk": "^2.1.0",
-    "webpack": "3.11.0",
     "@babel/cli": "7.0.0-beta.42",
     "@babel/core": "7.0.0-beta.42",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.51",
@@ -53,22 +39,31 @@
     "@types/jest": "22.2.3",
     "@types/jest-environment-puppeteer": "2.2.0",
     "@types/puppeteer": "1.3.0",
+    "@zeit/next-preact": "^0.0.7",
+    "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "22.4.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-react-app": "^3.1.2",
+    "dotenv": "^6.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "flow-bin": "0.64.0",
+    "glob": "^7.1.2",
     "jest": "22.4.3",
     "jest-puppeteer": "2.4.0",
+    "next": "^6.0.3",
+    "preact": "^8.2.9",
+    "preact-compat": "^3.18.0",
     "puppeteer": "1.3.0",
+    "react-redux": "^5.0.1",
     "react-test-renderer": "16.3.2",
-    "redux-devtools-extension": "^2.13.2"
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-thunk": "^2.1.0",
+    "webpack": "3.11.0"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }

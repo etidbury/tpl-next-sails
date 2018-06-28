@@ -49,8 +49,6 @@ module.exports.bootstrap = function (done) {
        sails.log.debug("Loading fixtures manually...");
 
 
-       console.log(sails.models);
-
        Promise.all(fixtures.map((fixture)=>{
            //const data=require('')
            const data=require(`../test/fixtures/${fixture}`);
