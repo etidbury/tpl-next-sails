@@ -1,3 +1,5 @@
+const path=require('path');
+
 module.exports.index=(req,res)=>{
 
 
@@ -7,12 +9,12 @@ module.exports.index=(req,res)=>{
     try {
 
 
-        serverVersion = require('../../package').version;
-        clientVersion = require('../../../package').version;
+        serverVersion = require(path.join(process.env.WORK_DIR,'/server/package')).version;
+        clientVersion = require(path.join(process.env.WORK_DIR,'/package')).version;
 
     }catch(err){
         sails.log.error("Failed to get client/server package versions",err);
-
+        return res.status(404).send("Failed to get client/server package versions");
     }
 
 

@@ -1,3 +1,6 @@
+const {expect}=require('chai')
+
+
 describe('UserModel', ()=> {
 
     describe('#find()', () =>{
@@ -9,6 +12,17 @@ describe('UserModel', ()=> {
                     return done();
                 })
                 .catch(done);
+        });
+    });
+
+    describe('#create()', () =>{
+        it('should check create function', async () =>{
+
+            await User.create({emailAddress:"test@example.com",password:"testpassword1"});
+
+
+            expect(await User.findOne({emailAddress:"test@example.com"})).to.have.property('password');
+
         });
     });
 

@@ -6,7 +6,7 @@ const glob = require('glob');
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-    distDir: 'build'
+    distDir: '.next'
     //,assetPrefix: isProd ? 'https://cdn.mydomain.com' : ''
 
     , webpack: (config, {dev}) => {

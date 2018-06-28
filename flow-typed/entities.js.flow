@@ -4,8 +4,6 @@ declare type User = {
 }
 
 
-
-
 declare type SpotifyTrack = {
     spotifyTrackId:string,
     primaryArtistId:string,

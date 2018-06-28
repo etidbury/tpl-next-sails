@@ -1,5 +1,52 @@
-declare type ServerProps = {
-    clientVersion:string,
-    serverVersion:string,
-    articleId?:string
+//@flow
+
+declare type int=number;
+
+declare type User={
+    id:int
+};
+
+declare type ImageHint = {
+    phrase:Phrase,
+    imageBase64:string,
+    addedTime:Date,
+    source:string
+}
+
+declare type Phrase = {
+    id:int,
+    textA:string,
+    textB:string,
+    textASynonyms:string,
+    textBSynonyms:string,
+    imageHints:Array<ImageHint>
+}
+
+declare type PhraseSessionAnswer ={
+    user:User,
+    id:int,
+    lastAnswerAttemptDurationMs:int,
+    usedHintCount:int,
+    phrase:Phrase,
+    phraseSession:PhraseSession,
+    lastAnswerAttempt:Date,
+    correctWordAverage:int,
+    answerAttemptDurationMs:int
+}
+
+declare type PhraseGroup={
+    id:int,
+    phrases:Array<Phrase>
+}
+
+declare type PhraseSession= {
+    user:User,
+    phraseGroup:PhraseGroup,
+    totalCompletionDurationMs:int,
+    startedTime:Date,
+    completedTime:Date,
+    phraseGroupMultiplier:int,
+    answerCorrectCount:int,
+    answerTimeoutCount:int,
+    phraseLetter:string
 }

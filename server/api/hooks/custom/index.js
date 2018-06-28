@@ -6,53 +6,45 @@
  */
 
 module.exports = function defineCustomHook(sails) {
-
-    return {
-
-        /**
+  return {
+    /**
          * Runs when a Sails app loads/lifts.
          *
          * @param {Function} done
          */
-        initialize: async function (done) {
+    initialize: async function(done) {
+      sails.log.info("Initializing hook... (`api/hooks/custom`)");
 
-            sails.log.info('Initializing hook... (`api/hooks/custom`)');
+      //create shorthand
+      /**@global*/
 
+      sails.next = {};
 
-            //create shorthand
-            /**@global*/
+      sails.next.render = (...args) => sails.config.next.app.render(...args);
 
-            sails.next={};
-            
-            sails.next.render=(...args)=>sails.config.next.app.render(...args);
+      // ... Any other app-specific setup code that needs to run on lift,
+      // even in production, goes here ...
 
-            // ... Any other app-specific setup code that needs to run on lift,
-            // even in production, goes here ...
+      return done();
+    },
 
-            return done();
-
-        },
-
-
-        routes: {
-
-            /**
+    routes: {
+      /**
              * Runs before every matching route.
              *
              * @param {Ref} req
              * @param {Ref} res
              * @param {Function} next
              */
-            before: {
-                '/*': {
-                    skipAssets: true,
-                    fn: async function (req, res, next) {
-
-                        // If our "lastSeenAt" attribute for this user is at least a few seconds old, then set it
-                        // to the current timestamp.
-                        //
-                        // (Note: As an optimization, this is run behind the scenes to avoid adding needless latency.)
-                      /*  const MS_TO_BUFFER = 60 * 1000;
+      before: {
+        "/*": {
+          skipAssets: true,
+          fn: async function(req, res, next) {
+            // If our "lastSeenAt" attribute for this user is at least a few seconds old, then set it
+            // to the current timestamp.
+            //
+            // (Note: As an optimization, this is run behind the scenes to avoid adding needless latency.)
+            /*  const MS_TO_BUFFER = 60 * 1000;
                         const now = Date.now();
                         if (loggedInUser.lastSeenAt < now - MS_TO_BUFFER) {
                             User.update({id: loggedInUser.id})
@@ -67,19 +59,16 @@ module.exports = function defineCustomHook(sails) {
                                 });//_∏_  (Meanwhile...)
                         }//ﬁ*/
 
-                        // Prevent the browser from caching logged-in users' pages.
-                        // (including w/ the Chrome back button)
-                        // > • https://mixmax.com/blog/chrome-back-button-cache-no-store
-                        // > • https://madhatted.com/2013/6/16/you-do-not-understand-browser-history
-                        res.setHeader('Cache-Control', 'no-cache, no-store');
+            // Prevent the browser from caching logged-in users' pages.
+            // (including w/ the Chrome back button)
+            // > • https://mixmax.com/blog/chrome-back-button-cache-no-store
+            // > • https://madhatted.com/2013/6/16/you-do-not-understand-browser-history
+            res.setHeader("Cache-Control", "no-cache, no-store");
 
-                        return next();
-                    }
-                }
-            }
+            return next();
+          }
         }
-
-
-    };
-
+      }
+    }
+  };
 };

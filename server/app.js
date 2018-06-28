@@ -28,11 +28,7 @@
 // > Note: This is not required in order to lift, but it is a convenient default.
 process.chdir(__dirname);
 
-const path=require('path');
-require('dotenv').config({path:path.resolve(process.cwd(),"../",".env")});
-//stop sails from overriding baked in env variables for ports in config/*
-delete process.env.PORT;
-
+require('./init')();
 
 // Attempt to import `sails` dependency, as well as `rc` (for loading `.sailsrc` files).
 let sails;

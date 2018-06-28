@@ -8,13 +8,18 @@ if (!isTestBootstrapped) {
     let app;
 
 
-
-
     /*global before*/
     before(function (done) {
 
+
+
+
         // Increase the Mocha timeout so that Sails has enough time to lift.
         this.timeout(30000);
+       
+       
+        require('../init')();
+
 
         Sails.lift({
 
@@ -36,9 +41,10 @@ if (!isTestBootstrapped) {
 
     });
 
-
     /*global after*/
-    after((done) => {
+    after(function (done) {
+        // Increase the Mocha timeout so that Sails has enough time to lower.
+        this.timeout(30000);
         // here you can clear fixtures, etc.
         if (app)
             {app.lower(done);}

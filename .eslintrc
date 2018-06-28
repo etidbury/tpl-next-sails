@@ -13,7 +13,6 @@
   },
   "rules": {
     "no-process-env": "error",
-    /* JSX */
     "no-restricted-globals": "off",
     "react/prop-types": [
       1,
@@ -53,36 +52,26 @@
       0
     ],
     "curly": "warn",
-
-
-    /**Edds specific recommendations**/
-
-    "promise/always-return": "warn",  /*Return inside each then() to create readable and reusable Promise chains.*/
-    "promise/no-return-wrap": "error",//Avoid wrapping values in Promise.resolve or Promise.reject when not needed.
-    "promise/param-names": "error",//Enforce consistent param names when creating new promises.
-    "promise/catch-or-return": "warn",//Return inside each then() to create readable and reusable Promise chains.
-    "promise/no-native": "off",//In an ES5 environment, make sure to create a Promise constructor before using.
-    "promise/no-nesting": "off",//Avoid nested then() or catch() statements
-    "promise/no-promise-in-callback": "warn",//Avoid using promises inside of callbacks
-    "promise/no-callback-in-promise": "warn",//Avoid calling cb() inside of a then() (use nodeify instead)
-    "promise/avoid-new": "warn",//Avoid creating new promises outside of utility libs (use pify instead)
-    "promise/no-new-statics": "error",//Avoid calling new on a Promise static method
-    "promise/no-return-in-finally": "warn",//Disallow return statements in finally()
-    "promise/valid-params": "warn"//Ensures the proper number of arguments are passed to Promise functions
+    "promise/always-return": "warn", 
+    "promise/no-return-wrap": "error",
+    "promise/param-names": "error",
+    "promise/catch-or-return": "warn",
+    "promise/no-native": "off",
+    "promise/no-nesting": "off",
+    "promise/no-promise-in-callback": "warn",
+    "promise/no-callback-in-promise": "warn",
+    "promise/avoid-new": "warn",
+    "promise/no-new-statics": "error",
+    "promise/no-return-in-finally": "warn",
+    "promise/valid-params": "warn"
   },
   "plugins": [
     "promise",
     "flowtype"
   ],
   "globals": {
-    // If "no-undef" is enabled below, be sure to list all global variables that
-    // are used in this app's backend code (including the globalIds of models):
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "it": true,
     "describe": true,
-    "Promise": true,
-
-    // …and any others.
-    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    "Promise": true
   }
 }

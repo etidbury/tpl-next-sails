@@ -17,9 +17,11 @@ class Blog extends React.Component<*> {
         reduxStore.dispatch(serverRenderClock(isServer))
 
 
+        let r={};
 
 
-        const {clientVersion,serverVersion}=await Client.get("api/v1/versions").then((r)=>r.data);
+
+       r={...await Client.get("api/v1/versions").then((r)=>r.data)};
 
 
 
@@ -27,10 +29,13 @@ class Blog extends React.Component<*> {
 
             const articleId = req.param('articleId');
 
-            return {articleId,clientVersion,serverVersion}
+            r={articleId,...r};
+
+            //return {articleId,clientVersion,serverVersion}
         }
 
-        return {clientVersion,serverVersion};
+
+        return r;
 
 
 

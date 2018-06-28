@@ -11,7 +11,7 @@
 const fixtures=['User'];
 module.exports.fixtures = fixtures;
 
-module.exports.bootstrap = async function (done) {
+module.exports.bootstrap = function (done) {
 
     // By convention, this is a good place to set up fake data during development.
     //

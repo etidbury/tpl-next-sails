@@ -49,7 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mysql',
-    url: `mysql://root@localhost:3306/cra-sails-local?insecureAuth=true`,
+    url: process.env.MYSQL_CONNECTION_URL,
 
   },
 
