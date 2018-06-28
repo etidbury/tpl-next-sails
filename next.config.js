@@ -4,8 +4,9 @@ const { EnvironmentPlugin } = require("webpack");
 const path = require("path");
 const glob = require("glob");
 const isProd = process.env.NODE_ENV === "production";
+const withProgressBar = require('next-progressbar');
 
-module.exports = {
+module.exports = withProgressBar({
   distDir: ".next",
   //,assetPrefix: isProd ? 'https://cdn.mydomain.com' : ''
 
@@ -24,8 +25,12 @@ module.exports = {
                  enforce: 'pre'
              });
          }*/
+
     config.plugins.push(new EnvironmentPlugin(["NODE_ENV", "DEV_SERVER_PORT"]));
 
+
+
+    
     /*if (process.env.ANALYZE_BUILD) {
             config.plugins.push(
                 new BundleAnalyzerPlugin({
@@ -36,33 +41,29 @@ module.exports = {
             );
         }*/
 
-    /*  config.plugins.push(new LoaderOptionsPlugin({
-            debug: true
-        }));*/
+  
 
-    if (config.resolve.alias) {
-      delete config.resolve.alias["react"];
-      delete config.resolve.alias["react-dom"];
-    }
     config.resolve.alias = {
       react: "preact-compat/dist/preact-compat",
       "react-dom": "preact-compat/dist/preact-compat"
     };
 
+
     config.module.rules.push(
-      /* {
+       {
                  test: /\.less$/,
-                 use: ['babel-loader', 'raw-loader', 'postcss-loader',
+                 use: ['babel-loader?compact=false', 'raw-loader', 'postcss-loader',
                      { loader: 'less-loader',
                          options: {
                              includePaths: ['styles', 'node_modules']
                                  .map((d) => path.join(__dirname, d))
                                  .map((g) => glob.sync(g))
                                  .reduce((a, c) => a.concat(c), [])
+                                 ,javascriptEnabled: true 
                          }
                      }
                  ]
-             },*/
+             },
       {
         test: /\.(css|scss)/,
         loader: "emit-file-loader",
@@ -83,7 +84,7 @@ module.exports = {
           {
             loader: "sass-loader",
             options: {
-              includePaths: ["styles", "node_modules"]
+              includePaths: ["styles","scss", "node_modules"]
                 .map(d => path.join(__dirname, d))
                 .map(g => glob.sync(g))
                 .reduce((a, c) => a.concat(c), [])
@@ -93,17 +94,19 @@ module.exports = {
       }
     );
 
-    config.module.rules.push({
-      test: /\.less$/,
-      use: [
-        "style-loader",
-        { loader: "css-loader", options: { importLoaders: 1 } },
-        "less-loader"
-      ]
-    });
+
+    // config.module.rules.push({
+    //   test: /\.less$/,
+    //   use: [
+    //     "postcss-functions",
+    //     "postcss-less-engine",
+      
+    //     { loader: "less-loader", options: { javascriptEnabled: true } }
+    //   ]
+    // });
 
     config.devtool = "source-map";
 
     return config;
   }
-};
+});

@@ -1,4 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document'
+import scss from '../styles/index.scss'
 
 export default class MyDocument extends Document {
 
@@ -32,14 +33,15 @@ export default class MyDocument extends Document {
                 <meta property="og:description" content="" />
                 <meta property="og:image" content="" />
                 <meta property="og:see_also" content="https://www.instagram.com/" />
-
                 
                 <title></title>
 
             </Head>
             <body>
+           
                 <Main />
                 <NextScript />
+                     
             </body>
             </html>
         )

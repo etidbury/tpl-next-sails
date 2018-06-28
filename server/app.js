@@ -53,4 +53,11 @@ try {
 
 
 // Start server
-sails.lift(rc('sails'));
+sails.lift();
+
+// sails.lift(Object.assign(rc('sails'),{
+//   hooks: {
+//     "sails-hook-next":false,
+//     "next":false
+//   }
+// }));

@@ -12,7 +12,7 @@ module.exports.next = {
     // Next.js root directory
     dir: process.env.WORK_DIR,
     // Dev mode. Is overridden by `process.env.NODE_ENV !== 'production'`
-    //dev: true,
+    dev: true,
     // Hide error messages
     quiet: false,
     // Equivalent to a `next.config.js` file

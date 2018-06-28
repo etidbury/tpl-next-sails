@@ -4,7 +4,7 @@ module.exports=()=>{
     const path=require('path');
 
     if (!process.env.WORK_DIR||!process.env.WORK_DIR.length){
-        process.env.WORK_DIR=path.resolve("../");
+        process.env.WORK_DIR=path.resolve(__dirname,"../");
         console.log(`Set default working directory: ${process.env.WORK_DIR}`)
     }
 
