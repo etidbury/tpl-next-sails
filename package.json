@@ -80,6 +80,7 @@
     "redux-thunk": "^2.1.0",
     "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
+    "styled-jsx": "^2.2.7",
     "webpack": "3.11.0"
   },
   "devDependencies": {},

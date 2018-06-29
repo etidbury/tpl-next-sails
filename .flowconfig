@@ -4,7 +4,7 @@
 .idea
 .circle-ci
 next-redux-wrapper
-flow-typed/npm/
+flow-typed/npm/*
 
 server/
 .*/__tests__/.*

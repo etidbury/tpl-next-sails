@@ -35,7 +35,8 @@ export default class MyDocument extends Document {
                 <meta property="og:see_also" content="https://www.instagram.com/" />
                 
                 <title></title>
-
+                <style dangerouslySetInnerHTML={{ __html: scss }} />
+          
             </Head>
             <body>
            
