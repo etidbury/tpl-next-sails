@@ -97,6 +97,7 @@ declare module "axios" {
     eject(ident: AxiosInterceptorIdent): void;
   }
   declare type AxiosPromise<T,R = T> = Promise<AxiosXHR<T,R>>;
+  
   declare class Axios {
     constructor<T,R>(config?: AxiosXHRConfigBase<T,R>): void;
     $call: <T,R>(

@@ -2,13 +2,11 @@ const path=require('path');
 
 module.exports.index=(req,res)=>{
 
-
     let serverVersion;
     let clientVersion;
-
+    
     try {
-
-
+        
         serverVersion = require(path.join(process.env.WORK_DIR,'/server/package')).version;
         clientVersion = require(path.join(process.env.WORK_DIR,'/package')).version;
 

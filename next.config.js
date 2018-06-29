@@ -26,7 +26,7 @@ module.exports = withProgressBar({
              });
          }*/
 
-    config.plugins.push(new EnvironmentPlugin(["NODE_ENV", "DEV_SERVER_PORT"]));
+    config.plugins.push(new EnvironmentPlugin(["NODE_ENV", "API_BASE_URL"]));
 
 
 
@@ -93,17 +93,6 @@ module.exports = withProgressBar({
         ]
       }
     );
-
-
-    // config.module.rules.push({
-    //   test: /\.less$/,
-    //   use: [
-    //     "postcss-functions",
-    //     "postcss-less-engine",
-      
-    //     { loader: "less-loader", options: { javascriptEnabled: true } }
-    //   ]
-    // });
 
     config.devtool = "source-map";
 

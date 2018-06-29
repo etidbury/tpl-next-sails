@@ -3,11 +3,9 @@
 .vscode
 .idea
 .circle-ci
-next-redux-wrapper
-flow-typed/npm/*
-
 server/
 .*/__tests__/.*
+
 [include]
 
 [libs]
@@ -15,3 +13,7 @@ flow-typed/
 
 [options]
 module.system.node.resolve_dirname=.
+
+[lints]
+deprecated-call-syntax=off
+
