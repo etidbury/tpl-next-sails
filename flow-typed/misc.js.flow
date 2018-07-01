@@ -1,5 +1,3 @@
-//@flow
-
 declare type int=number;
 
 declare type User={
@@ -13,22 +11,26 @@ declare type ImageHint = {
     source:string
 }
 
+declare type PhraseTextVariation = {
+    id:int,
+    text:string,
+    category:PhraseTextCategory,
+    phrase:Phrase
+};
+
 declare type Phrase = {
     id:int,
-    textA:string,
-    textB:string,
-    textASynonyms:string,
-    textBSynonyms:string,
+    phraseTextVariation:Array<PhraseTextVariation>,
     imageHints:Array<ImageHint>
 }
 
 declare type PhraseSessionAnswer ={
-    user:User,
     id:int,
-    lastAnswerAttemptDurationMs:int,
-    usedHintCount:int,
+    user:User,
     phrase:Phrase,
     phraseSession:PhraseSession,
+    lastAnswerAttemptDurationMs:int,
+    usedHintCount:int,
     lastAnswerAttempt:Date,
     correctWordAverage:int,
     answerAttemptDurationMs:int
@@ -36,7 +38,8 @@ declare type PhraseSessionAnswer ={
 
 declare type PhraseGroup={
     id:int,
-    phrases:Array<Phrase>
+    phrases:Array<Phrase>,
+    title:string
 }
 
 declare type PhraseSession= {
