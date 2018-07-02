@@ -9,11 +9,11 @@ class MyApp extends App {
 
 constructor(){
 
-super();
-  //if (typeof window!=="undefined"){
-  //  require('antd/dist/antd.less');
-  //}
-}
+  super();
+    //if (typeof window!=="undefined"){
+    //  require('antd/dist/antd.less');
+    //}
+  }
 
   render () {
     const {Component, pageProps, reduxStore} = this.props
