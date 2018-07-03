@@ -37,4 +37,4 @@ apps:
       #DEBUG: "*"
       LOG_QUERIES: true
       FIXTURES: true
-    args: "--color"
+    node_args: "--inspect"

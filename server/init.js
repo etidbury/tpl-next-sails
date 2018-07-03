@@ -8,11 +8,10 @@ module.exports=()=>{
         console.log(`Set default working directory: ${process.env.WORK_DIR}`)
     }
 
-    const moduleAlias = require('module-alias')
+    //const moduleAlias = require('module-alias')
 
-    moduleAlias.addAlias('react', 'preact-compat')
-    moduleAlias.addAlias('react-dom', 'preact-compat')
-
+    //moduleAlias.addAlias('react', 'preact-compat')
+    //moduleAlias.addAlias('react-dom', 'preact-compat')
 
     require('dotenv').config({path:path.join(process.env.WORK_DIR,".env")});
 

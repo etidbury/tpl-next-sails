@@ -43,10 +43,10 @@ module.exports = withProgressBar({
 
   
 
-    config.resolve.alias = {
-      react: "preact-compat/dist/preact-compat",
-      "react-dom": "preact-compat/dist/preact-compat"
-    };
+   //config.resolve.alias = {
+    //  react: "preact-compat/dist/preact-compat",
+    //  "react-dom": "preact-compat/dist/preact-compat"
+    //};
 
 
     config.module.rules.push(

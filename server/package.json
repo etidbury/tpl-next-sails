@@ -21,7 +21,6 @@
     "mocha": "4.1.0",
     "module-alias": "^2.1.0",
     "path": "^0.12.7",
-    "preact-compat": "^3.18.0",
     "sails": "^1.0.2",
     "sails-hook-cron": "^2.2.2",
     "sails-hook-dotenv": "^0.1.1",
@@ -35,6 +34,7 @@
     "@sailshq/eslint": "^4.19.3"
   },
   "scripts": {
+    "debug":"NODE_ENV=development node --inspect-brk=9228 index.js",
     "postinstall": "yarn generate-lock-entry || exit 0",
     "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=testing node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/**/*.test.js --exit",

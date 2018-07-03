@@ -9,11 +9,10 @@ import { connect } from "react-redux";
 const { Content, Header, Footer } = Layout;
 
 class NormalLoginForm extends React.Component {
-
-  form ={
-    username:"",
-    password:""
-  }
+  form = {
+    username: "",
+    password: ""
+  };
 
 
   onFormSubmit = async e => {
@@ -24,9 +23,10 @@ class NormalLoginForm extends React.Component {
       dispatch: this.props.dispatch
     });
 
-
-  
+    
   };
+
+
   render() {
     return (
       <div>
@@ -40,15 +40,14 @@ class NormalLoginForm extends React.Component {
           <Content style={{ margin: "24px auto" }}>
             <Spin spinning={!!this.props.loading}>
               <Form className="login-form" onSubmit={this.onFormSubmit}>
-                <FormItem name="username" >
+                <FormItem name="username">
                   <Input
                     prefix={
                       <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                     }
                     placeholder="Username"
-
                     name="username"
-                    onChange={(e)=>this.form['username']=e.target.value}
+                    onChange={e => (this.form["username"] = e.target.value)}
                   />
                 </FormItem>
                 <FormItem>
@@ -58,7 +57,7 @@ class NormalLoginForm extends React.Component {
                     }
                     type="password"
                     placeholder="Password"
-                    onChange={(e)=>this.form['password']=e.target.value}
+                    onChange={e => (this.form["password"] = e.target.value)}
                   />
                 </FormItem>
                 <FormItem>
