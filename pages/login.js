@@ -14,18 +14,14 @@ class NormalLoginForm extends React.Component {
     password: ""
   };
 
-
-  onFormSubmit = async e => {
+  onFormSubmit = e => {
     e.preventDefault();
 
-    await loginActions.authorise({
+    loginActions.authorise({
       ...this.form,
       dispatch: this.props.dispatch
     });
-
-    
   };
-
 
   render() {
     return (
@@ -35,11 +31,15 @@ class NormalLoginForm extends React.Component {
         </Head>
 
         <AntStyles />
-
+        
         <Layout>
           <Content style={{ margin: "24px auto" }}>
             <Spin spinning={!!this.props.loading}>
-              <Form className="login-form" onSubmit={this.onFormSubmit}>
+              <Form className="login-form" onSubmit={(e) => {
+                
+                this.onFormSubmit(e)
+                
+                }}>
                 <FormItem name="username">
                   <Input
                     prefix={
@@ -47,7 +47,13 @@ class NormalLoginForm extends React.Component {
                     }
                     placeholder="Username"
                     name="username"
-                    onChange={e => (this.form["username"] = e.target.value)}
+                    onChange={(e) => {
+
+                      console.log(e,e.target.value);
+
+                      this.form["username"] = e.target.value;
+
+                      }}
                   />
                 </FormItem>
                 <FormItem>

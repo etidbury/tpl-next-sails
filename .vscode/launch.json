@@ -5,15 +5,31 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Next: Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "webRoot": "${workspaceRoot}",
+            "url": "http://localhost:3000",
+            "internalConsoleOptions": "openOnSessionStart",
+            "skipFiles": [
+                "node_modules/**"
+            ],
+            "runtimeArgs": ["--auto-open-devtools-for-tabs"]
+        },
+        {
             "name": "ClientLaunch",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "runtimeExecutable": "yarn",
             "runtimeArgs": [
-                "debug", "--inspect=9229"
+                "debug",
+                "--inspect=9229"
             ],
-            "port": 9229
+            "port": 9229,
+            "skipFiles": [
+                "node_modules/**/*.js"
+            ]
         },
         {
             "name": "ServerLaunch",
@@ -24,15 +40,20 @@
             "runtimeArgs": [
                 "debug"
             ],
-            "port": 9228
+            "port": 9228,
+            "skipFiles": [
+                "node_modules/**/*.js"
+            ]
         }
-       
     ],
     "compounds": [
-                {
-                    "name": "Server/Client Debug",
-                    "configurations": ["ServerLaunch", "ClientLaunch"]
-                }
-    
-        ]
+        {
+            "name": "Server/Client Debug",
+            "configurations": [
+                "ServerLaunch",
+                "ClientLaunch",
+                "Next: Chrome"
+            ]
+        }
+    ]
 }

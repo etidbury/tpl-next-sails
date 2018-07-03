@@ -61,3 +61,7 @@ For simplicity and readability, Reducers, Actions, and Store creators are all in
 ####
 
 https://github.com/RasCarlito/sails-hook-next
+
+
+
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9229 --auto-open-devtools-for-tabs --new-window "http://localhost:3000" --incognito

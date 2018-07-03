@@ -5,6 +5,7 @@
   "author": "",
   "main": "index.js",
   "scripts": {
+    "open":"",
     "debug":"./node_modules/next/dist/bin/next --inspect-brk=9229",
     "postinstall": "yarn --cwd server install",
     "clean": "tidil rm-pkg-locks && rm -rf .next",
