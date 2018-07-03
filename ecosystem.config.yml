@@ -6,7 +6,7 @@ apps:
  #   name     : 'api-app'
  #   instances: 4
  #   exec_mode: cluster
-  - script : ./server/app.js
+  - script : ./server/index.js
     name   : 'cra-sails'
     #watch  : true
       #NODE_ENV: production
@@ -16,8 +16,7 @@ apps:
       #FIXTURES: true
     args: "--color"
 
-
-  - script : ./server/app.js
+  - script : ./server/index.js
     name   : 'cra-sails-test'
     #watch  : true
       #NODE_ENV: production
@@ -29,7 +28,7 @@ apps:
     args: "--color"
 
 
-  - script : ./server/app.js
+  - script : ./server/index.js
     name   : 'cra-sails-watch'
     watch  :
       - "./server/config"

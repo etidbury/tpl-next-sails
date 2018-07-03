@@ -36,13 +36,13 @@
   },
   "scripts": {
     "postinstall": "yarn generate-lock-entry || exit 0",
-    "start": "NODE_ENV=production node app.js",
+    "start": "NODE_ENV=production node index.js",
     "test": "NODE_ENV=testing node ./node_modules/mocha/bin/mocha test/bootstrap.test.js test/**/*.test.js --exit",
     "test-watch": "NODE_ENV=testing node ./node_modules/mocha/bin/mocha --watch test/bootstrap.test.js test/**/*.test.js",
     "lint": "eslint . --quiet --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
   },
-  "main": "app.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/etidbury/cra-sails-boilerplate.git"
