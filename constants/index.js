@@ -1,4 +1,4 @@
-export default {
+export const actionTypes={
     TICK: 'TICK',
     INCREMENT: 'INCREMENT',
     DECREMENT: 'DECREMENT',
@@ -12,4 +12,4 @@ export default {
         "FAIL":"LOGIN/FAIL",
         "COMPLETE":"LOGIN/COMPLETE"
     }
-}
+};

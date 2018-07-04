@@ -20,13 +20,12 @@ class Index extends React.Component {
   componentWillUnmount () {
     //clearInterval(this.timer)
   }
-
-
+  
   render () {
     return (
         <div>
             <p className="foo">Hello World!</p>
-            <Link to="login" prefetch>Login</Link>
+            <Link href="/login" prefetch><a>Login</a></Link>
         </div>
 
     )
