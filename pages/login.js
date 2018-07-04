@@ -31,15 +31,16 @@ class NormalLoginForm extends React.Component {
         </Head>
 
         <AntStyles />
-        
+
         <Layout>
           <Content style={{ margin: "24px auto" }}>
             <Spin spinning={!!this.props.loading}>
-              <Form className="login-form" onSubmit={(e) => {
-                
-                this.onFormSubmit(e)
-                
-                }}>
+              <Form
+                className="login-form"
+                onSubmit={e => {
+                  this.onFormSubmit(e);
+                }}
+              >
                 <FormItem name="username">
                   <Input
                     prefix={
@@ -47,13 +48,9 @@ class NormalLoginForm extends React.Component {
                     }
                     placeholder="Username"
                     name="username"
-                    onChange={(e) => {
-
-                      console.log(e,e.target.value);
-
+                    onChange={e => {
                       this.form["username"] = e.target.value;
-
-                      }}
+                    }}
                   />
                 </FormItem>
                 <FormItem>
