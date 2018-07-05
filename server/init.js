@@ -76,7 +76,7 @@ module.exports = (onSailsLift,sailsConfig) => {
     sails.lift(
         Object.assign(rc("sails"), {
             hooks: {
-                next: false
+                next: !isSailsNextHookDisabled
             }
         },sailsConfig||{}), onSailsLift
     );
