@@ -3,7 +3,7 @@
 .*/build/.*
 .*/server/.*
 .*/.next/.*
-_.*
+._**
 
 [libs]
 flow-typed
