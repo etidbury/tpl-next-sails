@@ -16,6 +16,7 @@ RUN npm install -g yarn
 # Install Tidil
 RUN npm install -g tidil
 
+RUN npm -v && node -v && yarn -v && tidil --version
 
 RUN mkdir -p /var/www/
 
@@ -29,18 +30,13 @@ ADD . /var/www/
 RUN rm -rf /var/www/build
 RUN rm -rf /var/www/.next
 
-#Ensure node modules are deleted/reset
-RUN rm -rf /var/www/node_modules/
-RUN rm -rf /var/www/server/node_modules/
-
-
-RUN yarn install --non-interactive
-RUN yarn run build
+RUN npm ci
+RUN yarn build
 
 #SERVER SPECIFIC
 WORKDIR /var/www/server
 
-RUN yarn install --non-interactive
+RUN npm ci
 #explicitly install mocha (solution: https://discuss.circleci.com/t/node-js-npm-install-devdependencies/15551)
 RUN yarn add mocha
 RUN yarn test
@@ -50,8 +46,8 @@ RUN yarn test
 WORKDIR /var/www/
 RUN yarn test
 
-#Rebuild for production environment
-RUN yarn run build
+#Rebuild for production environment (overriding test build)
+RUN yarn build
 
 # Run app
 CMD pm2 start --no-daemon /var/www/ecosystem.config.yml --env production --only cra-sails
