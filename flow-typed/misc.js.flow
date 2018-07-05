@@ -11,10 +11,12 @@ declare type ImageHint = {
   source: string
 };
 
+
 declare type PhraseTextCategory = {
   id: int,
   name: string
 };
+
 
 declare type PhraseTextVariation = {
   id: int,

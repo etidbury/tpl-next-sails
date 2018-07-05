@@ -3,8 +3,7 @@
       "next/babel"
   ],
   "plugins": [
-      "transform-flow-strip-types",
-      "styled-jsx/babel"
+      "transform-flow-strip-types"
   ],
   "env":{
     "test": {
