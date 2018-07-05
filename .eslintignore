@@ -4,4 +4,3 @@ my-app*
 server*
 packages/react-scripts/template
 packages/react-scripts/fixtures
-flow-typed*

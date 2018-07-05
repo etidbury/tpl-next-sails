@@ -2,13 +2,13 @@
     "flowide.pathToFlow": "${workspaceRoot}/node_modules/.bin/flow",
     "flow.pathToFlow": "${workspaceRoot}/node_modules/.bin/flow",
     "flow.stopFlowOnExit": true,
-    "flow.enabled": false,
+    "flow.enabled": true,
     "flow.useNPMPackagedFlow":true,
-    "flow.showStatus":false,
+    "flow.showStatus":true,
     "flow.runOnEdit":true,
     "flow.runOnAllFiles": false,
     "flow.useLSP":false,
     "flow.showStatus": true,
-    "javascript.validate.enable": true,
-    "javascript.nameSuggestions":true
+    "javascript.validate.enable": false,
+    "javascript.nameSuggestions":false
 }
