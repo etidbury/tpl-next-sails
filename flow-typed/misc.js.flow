@@ -1,55 +1,60 @@
-declare type int=number;
+declare type int = number;
 
-declare type User={
-    id:int
+declare type User = {
+  id: int
 };
 
 declare type ImageHint = {
-    phrase:Phrase,
-    imageBase64:string,
-    addedTime:Date,
-    source:string
-}
+  phrase: Phrase,
+  imageBase64: string,
+  addedTime: Date,
+  source: string
+};
+
+declare type PhraseTextCategory = {
+  id: int,
+  name: string
+};
 
 declare type PhraseTextVariation = {
-    id:int,
-    text:string,
-    category:PhraseTextCategory,
-    phrase:Phrase
+  id: int,
+  text: string,
+  category: PhraseTextCategory,
+  phrase: Phrase
 };
 
 declare type Phrase = {
-    id:int,
-    phraseTextVariation:Array<PhraseTextVariation>,
-    imageHints:Array<ImageHint>
-}
+  id: int,
+  phraseTextVariation: Array<PhraseTextVariation>,
+  imageHints: Array<ImageHint>
+};
 
-declare type PhraseSessionAnswer ={
-    id:int,
-    user:User,
-    phrase:Phrase,
-    phraseSession:PhraseSession,
-    lastAnswerAttemptDurationMs:int,
-    usedHintCount:int,
-    lastAnswerAttempt:Date,
-    correctWordAverage:int,
-    answerAttemptDurationMs:int
-}
+declare type PhraseSessionAnswer = {
+  id: int,
+  user: User,
+  phrase: Phrase,
+  phraseSession: PhraseSession,
+  lastAnswerAttemptDurationMs: int,
+  usedHintCount: int,
+  lastAnswerAttempt: Date,
+  correctWordAverage: int,
+  answerAttemptDurationMs: int
+};
 
-declare type PhraseGroup={
-    id:int,
-    phrases:Array<Phrase>,
-    title:string
-}
+declare type PhraseGroup = {
+  id: int,
+  phrases: Array<Phrase>,
+  title: string
+};
 
-declare type PhraseSession= {
-    user:User,
-    phraseGroup:PhraseGroup,
-    totalCompletionDurationMs:int,
-    startedTime:Date,
-    completedTime:Date,
-    phraseGroupMultiplier:int,
-    answerCorrectCount:int,
-    answerTimeoutCount:int,
-    phraseLetter:string
-}
+declare type PhraseSession = {
+  user: User,
+  phraseGroup: PhraseGroup,
+  totalCompletionDurationMs: int,
+  startedTime: Date,
+  completedTime: Date,
+  phraseGroupMultiplier: int,
+  answerCorrectCount: int,
+  answerTimeoutCount: int,
+  phraseLetter: string
+};

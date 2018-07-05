@@ -22,8 +22,9 @@ class Blog extends React.Component<*> {
 
       //return {articleId,clientVersion,serverVersion}
     }
-    
 
+  
+  axios.get
   
 
     return r;
