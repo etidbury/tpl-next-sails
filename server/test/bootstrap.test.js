@@ -1,4 +1,4 @@
-let isTestBootstrapped=false;
+let isTestBootstrapped = false;
 
 if (!isTestBootstrapped) {
 
@@ -16,28 +16,21 @@ if (!isTestBootstrapped) {
 
         // Increase the Mocha timeout so that Sails has enough time to lift.
         this.timeout(30000);
-       
-       
-        require('../init')();
 
-
-        Sails.lift({
-
-            log: {
-                level: 'error'
-            },
-
-        }, (err, sails)=> {
-
-            if (err){
+        require('../init')((err, sails) => {
+            if (err) {
                 return done(err);
             }
 
             app = sails;
 
             sails.config.bootstrap(done);
-
-        });
+        }, {
+                log: {
+                    level: 'error'
+                }
+            }
+        );
 
     });
 
@@ -45,10 +38,9 @@ if (!isTestBootstrapped) {
     after(function (done) {
         // Increase the Mocha timeout so that Sails has enough time to lower.
         this.timeout(30000);
-        if (app)
-            {app.lower(done);}
+        if (app) { app.lower(done); }
     });
 
 
-    isTestBootstrapped=true;
+    isTestBootstrapped = true;
 }

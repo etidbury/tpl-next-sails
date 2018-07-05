@@ -18,10 +18,15 @@ module.exports = function defineCustomHook(sails) {
       //create shorthand
       /**@global*/
 
+      try {
+
+      
       sails.next = {};
 
       sails.next.render = (...args) => sails.config.next.app.render(...args);
-
+      }catch(e){
+        console.error("Failed to namespace sails.config.next.app. Ignoring...");
+      }
       // ... Any other app-specific setup code that needs to run on lift,
       // even in production, goes here ...
 
