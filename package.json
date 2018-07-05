@@ -18,7 +18,7 @@
     "build-prod": "NODE_ENV=production next build",
     "prod": "NODE_ENV=production next build && NODE_ENV=production node server/index.js",
     "dev": "next --inspect",
-    "test": "npm run server-test & (tidil check-server --port-env TEST_SERVER_PORT && NODE_ENV=test $(npm bin)/jest --no-cache) ; pm2 delete cra-sails-test",
+    "test": "$(npm bin)/flow && npm run server-test & (tidil check-server --port-env TEST_SERVER_PORT && NODE_ENV=test $(npm bin)/jest --no-cache) ; pm2 delete cra-sails-test",
     "test-all-ci": "tidil test-all",
     "lint": "node ./node_modules/eslint . --quiet --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "docker": "tidil docker run",
