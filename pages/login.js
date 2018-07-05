@@ -1,3 +1,6 @@
+
+import React from 'react';
+
 import { Form, Icon, Input, Button, Checkbox, Layout, Spin } from "antd";
 const FormItem = Form.Item;
 //import dynamic from 'next/dynamic'
@@ -7,6 +10,7 @@ import Head from "next/head";
 import loginActions from "../actions/loginActions";
 import { connect } from "react-redux";
 const { Content, Header, Footer } = Layout;
+
 
 class NormalLoginForm extends React.Component {
   form = {
@@ -24,6 +28,9 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
+
+
+
     return (
       <div>
         <Head>

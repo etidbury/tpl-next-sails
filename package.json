@@ -5,6 +5,7 @@
   "author": "",
   "main": "index.js",
   "scripts": {
+    "flow": "$(npm bin)/flow",
     "open": "",
     "debug": "./node_modules/next/dist/bin/next --inspect-brk=9229",
     "postinstall": "yarn --cwd server install",
@@ -43,6 +44,7 @@
     "autoprefixer": "^8.6.4",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^8.2.5",
     "babel-jest": "22.4.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -52,9 +54,9 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^5.0.1",
+    "eslint-plugin-flowtype": "^2.49.3",
     "eslint-plugin-promise": "^3.8.0",
     "extract-text-webpack-plugin": "^3.0.2",
-    "flow-bin": "0.64.0",
     "glob": "^7.1.2",
     "jest": "22.4.3",
     "jest-puppeteer": "2.4.0",
@@ -80,6 +82,8 @@
     "styled-jsx": "^2.2.7",
     "webpack": "3.11.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "flow-bin": "^0.75.0"
+  },
   "license": "ISC"
 }

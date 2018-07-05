@@ -64,7 +64,7 @@ try {
 
 // Start server
 //sails.lift();
-const isSailsNextHookDisabled=!(process.env.DISABLE_SAILS_NEXT_HOOK&&process.env.DISABLE_SAILS_NEXT_HOOK.length);
+const isSailsNextHookDisabled=(process.env.DISABLE_SAILS_NEXT_HOOK&&process.env.DISABLE_SAILS_NEXT_HOOK.length);
 if (isSailsNextHookDisabled)
   console.warn("Sails Next.js hook has been disabled!");
 

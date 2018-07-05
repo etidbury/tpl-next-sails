@@ -29,7 +29,7 @@ export default class MyDocument extends Document {
                 <meta property="og:locale" content="en_gb" />
 
                 <meta property="og:url" content="" />
-	            <meta property="og:title" content="" />
+                <meta property="og:title" content="" />
                 <meta property="og:description" content="" />
                 <meta property="og:image" content="" />
                 <meta property="og:see_also" content="https://www.instagram.com/" />
