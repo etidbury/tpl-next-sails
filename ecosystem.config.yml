@@ -13,7 +13,7 @@ apps:
     env:
       #DEBUG: "*"
       LOG_QUERIES: true
-      #FIXTURES: true
+  
     args: "--color"
 
   - script : ./server/index.js
@@ -24,7 +24,7 @@ apps:
       #DEBUG: "*"
       NODE_ENV: testing
       LOG_QUERIES: true
-      #FIXTURES: true
+
     args: "--color"
 
 
@@ -36,5 +36,5 @@ apps:
     env:
       #DEBUG: "*"
       LOG_QUERIES: true
-      FIXTURES: true
+      FIXTURES: "User" # comma-separated list
     node_args: "--inspect"

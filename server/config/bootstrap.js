@@ -8,8 +8,7 @@
  * For more information on bootstrapping your app, check out:
  * https://sailsjs.com/config/bootstrap
  */
-const fixtures=['User'];
-module.exports.fixtures = fixtures;
+
 
 module.exports.bootstrap = function (done) {
 
@@ -33,7 +32,7 @@ module.exports.bootstrap = function (done) {
     // (otherwise your server will never lift, since it's waiting on the bootstrap)
 
 
-    if (process.env.FIXTURES) {
+    if (process.env.FIXTURES&&process.env.FIXTURES.length) {
        /*
         const Barrels = require('barrels');
 
@@ -44,12 +43,16 @@ module.exports.bootstrap = function (done) {
         barrels.populate(fixtures, (err) => {
             return done(err);
         });*/
+    
+        const fixtureModelNames=process.env.FIXTURES.split(',').map((t)=>t.trim());
+
+        if (!fixtureModelNames.length) throw new Error("Invalid fixtures specified in FIXTURES environment variable");
+
+       sails.log.debug("Loading fixtures:",fixtureModelNames.join(', '));
 
 
-       sails.log.debug("Loading fixtures manually...");
 
-
-       Promise.all(fixtures.map((fixture)=>{
+       Promise.all(fixtureModelNames.map((fixture)=>{
            //const data=require('')
            const data=require(`../test/fixtures/${fixture}`);
 

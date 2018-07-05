@@ -45,7 +45,6 @@ if (!isTestBootstrapped) {
     after(function (done) {
         // Increase the Mocha timeout so that Sails has enough time to lower.
         this.timeout(30000);
-        // here you can clear fixtures, etc.
         if (app)
             {app.lower(done);}
     });
