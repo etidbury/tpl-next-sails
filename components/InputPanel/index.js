@@ -14,7 +14,7 @@ class InputPanel extends React.Component {
     editor = false;
 
     state={
-        activeInputPanel:inputPanels.SCRIPT_EDITOR
+        activeInputPanel:inputPanels.TRANSLATOR
     };
 
     inputPanelOptions=[
@@ -81,8 +81,8 @@ class InputPanel extends React.Component {
 
 
                     <ButtonGroup>
-                        {this.inputPanelOptions.map((inputPanelOption)=>
-                            <Button icon={inputPanelOption.icon} type={this.state.activeInputPanel===inputPanelOption.inputPanel?"primary":""} onClick={()=>this.onSelectActive(inputPanelOption.inputPanel)}/>
+                        {this.inputPanelOptions.map((inputPanelOption,idx)=>
+                            <Button key={idx} icon={inputPanelOption.icon} type={this.state.activeInputPanel===inputPanelOption.inputPanel?"primary":""} onClick={()=>this.onSelectActive(inputPanelOption.inputPanel)}/>
                         )}
                     
                     </ButtonGroup>
