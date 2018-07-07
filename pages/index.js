@@ -1,9 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Link from 'next/link'
+import InputPanel from '../components/InputPanel';
+import Head from 'next/head';
+
+
 
 class Index extends React.Component {
-  static getInitialProps ({ reduxStore, req,params }) {
+  static getInitialProps({ reduxStore, req, params }) {
     //const isServer = !!req
     //reduxStore.dispatch(serverRenderClock(isServer))
 
@@ -11,22 +15,63 @@ class Index extends React.Component {
     return {}
   }
 
-  componentDidMount () {
+  componentDidMount() {
     //const {dispatch} = this.props
     //this.timer = startClock(dispatch)
+
   }
 
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     //clearInterval(this.timer)
   }
-  
-  render () {
+
+  render() {
     return (
-        <div>
-            <p className="foo">Hello World!</p>
-            <Link href="/login" prefetch><a>Login</a></Link>
-        </div>
+      <div>
+
+        <style jsx global>{`
+
+       html,body{
+        margin:0;
+        padding:0;
+
+
+       }
+            main{
+              height:100vh;
+            
+
+            }
+            header{
+              height:100%;
+          
+            }
+          `}</style>
+
+        <main className="flex flex-column">
+
+          <header>
+
+
+          </header>
+
+
+
+          <InputPanel />
+
+
+
+        </main>
+
+
+
+
+
+
+
+
+      </div>
 
     )
   }

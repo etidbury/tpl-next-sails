@@ -6,3 +6,12 @@
 @import "utility";
 //@import "antd/index";
 //@import "antd/dist/antd.min.css";
+
+
+.flex{
+    display:flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}

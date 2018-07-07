@@ -1,5 +1,5 @@
 {
-  "name": "tpl-next-sails",
+  "name": "study-game",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -24,7 +24,7 @@
     "test-all-ci": "tidil test-all",
     "docker": "tidil docker run --container-name $(node -p \"require('./package').name\")",
     "docker:clean": "docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)",
-    "docker:mysql": "docker stop local-mysql-server ; docker rm local-mysql-server ; docker run --name local-mysql-server -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=cra-sails-local -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
+    "docker:mysql": "docker stop local-mysql-server ; docker rm local-mysql-server ; docker run --name local-mysql-server -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -e MYSQL_DATABASE=study-game-local -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:5.7 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci",
     "deploy:now": "now --docker -e PORT=80"
   },
   "dependencies": {
@@ -64,6 +64,7 @@
     "jest-puppeteer": "2.4.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "myscript": "^4.2.0",
     "next": "^6.0.3",
     "next-progressbar": "^1.0.0",
     "postcss-easy-import": "^3.0.0",

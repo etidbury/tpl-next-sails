@@ -13,3 +13,7 @@ export const actionTypes={
         "COMPLETE":"LOGIN/COMPLETE"
     }
 };
+export const inputPanels={
+    'SCRIPT_EDITOR':'SCRIPT_EDITOR',
+    'TRANSLATOR':'TRANSLATOR'
+}
